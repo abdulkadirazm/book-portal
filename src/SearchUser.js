@@ -87,33 +87,39 @@ class SearchUsers extends React.Component{
                     value={query}/>
                 <button onClick={this.clickHandler}>Search</button>
                 <div>
-                    <ol>
+                    <table border="1">
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Email</th>
+                        </tr>
                       {searchUsers.map((user) => (
-                        <li>
-                          <div>
-                          <p>{user.userID}</p>
-                          <p>{user.username}</p>
-                          <p>{user.email}</p>       
-                          </div>
-                        </li>
+                        <tr>
+                          <td>{user.userID}</td>
+                          <td>{user.username}</td>
+                          <td>{user.email}</td>
+                        </tr>
                       ))}
-                    </ol>
+                    </table>
                 </div>
                 <div>
 
                 <button onClick={this.clickHandler2}>get All Users</button>
                 <div>
-                    <ol>
+                    <table border="1">
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Email</th>
+                        </tr>
                       {allUsers.map((user) => (
-                        <li>
-                          <div>
-                          <p>{user.userID}</p>
-                          <p>{user.username}</p>
-                          <p>{user.email}</p>
-                          </div>
-                        </li>
+                        <tr>
+                          <td>{user.userID}</td>
+                          <td>{user.username}</td>
+                          <td>{user.email}</td>
+                        </tr>
                       ))}
-                    </ol>
+                    </table>
                 </div>
                 </div>
             </div>

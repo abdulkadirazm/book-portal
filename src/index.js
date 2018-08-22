@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import BookLib from './BookLib'
 import SearchUsers from './SearchUser';
 import AddUser from './AddUser'
+import DeleteUser from './DeleteUser'
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
@@ -17,5 +18,8 @@ registerServiceWorker();
 ReactDOM.render(<SearchUsers />, document.getElementById('root'));
 registerServiceWorker();
 
-ReactDOM.render(<AddUser />, document.getElementById('root'));
+/*ReactDOM.render(<AddUser />, document.getElementById('root'));
+registerServiceWorker();*/
+
+ReactDOM.render(<DeleteUser />, document.getElementById('root'));
 registerServiceWorker();

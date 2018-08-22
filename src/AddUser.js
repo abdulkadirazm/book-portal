@@ -14,13 +14,15 @@ class AddUser extends React.Component{
 
         this.handleSave = this.handleSave.bind(this)
         this.handleChange = this.handleChange.bind(this)
-        this.clickHandler = this.clickHandler.bind(this)
-        this.changeQuery = this.changeQuery.bind(this)
+        //this.clickHandler = this.clickHandler.bind(this)
+        //this.changeQuery = this.changeQuery.bind(this)
     }   
 
+    /*
     clickHandler(event){
         this.changeQuery(event.target.query)
     }
+    */
 
     handleChange(event){
         //kısa yol
@@ -39,17 +41,17 @@ class AddUser extends React.Component{
             alert("Please enter your password again!")
         }else if(this.state.password !== this.state.passwordC){
             alert("Paswords not match. Please check!")
+        }else {
+            const user ={
+                username: this.state.userName,
+                email: this.state.eMail,
+                password: this.state.password
+            }
+            UsersAPI.insert(user);
         }
-
-        const user ={
-            username: this.state.userName,
-            email: this.state.eMail,
-            password: this.state.password
-        }
-        UsersAPI.insert(user);
-
     }
 
+    /*
     changeQuery = ((query) => {
         UsersAPI.insert(query).then((users) => {
             if(!users || users.hasOwnProperty('error')) {
@@ -59,6 +61,7 @@ class AddUser extends React.Component{
             }
         });
     });
+    */
 
     render(){
         return (
