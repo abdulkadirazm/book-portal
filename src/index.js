@@ -1,25 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import BookLib from './BookLib'
-import SearchUsers from './SearchUser';
-import AddUser from './AddUser'
-import DeleteUser from './DeleteUser'
-
-
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
-
-ReactDOM.render(<BookLib />, document.getElementById('root'));
-registerServiceWorker();
-
-ReactDOM.render(<SearchUsers />, document.getElementById('root'));
-registerServiceWorker();
+import AppRouter from './AppRouter'
+import { BrowserRouter } from 'react-router-dom'
 
 /*ReactDOM.render(<AddUser />, document.getElementById('root'));
 registerServiceWorker();*/
 
-ReactDOM.render(<DeleteUser />, document.getElementById('root'));
+ReactDOM.render(
+    <BrowserRouter>
+        <AppRouter />
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+
 registerServiceWorker();

@@ -1,24 +1,6 @@
 import React from "react"
 import * as UsersAPI from './UsersAPI'
 
-class UserList extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            username: props.username,
-            password: props.password
-        }
-    }
-
-    render(){
-        return(
-            <div>
-                
-            </div>
-        )
-    }
-}
-
 class DeleteUser extends React.Component{
     constructor(props){
         super(props)

@@ -6,7 +6,6 @@ class SearchUsers extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            gUser: JSON,
             allUsers:[],
             searchUsers:[],
             query:'',
@@ -15,10 +14,8 @@ class SearchUsers extends React.Component{
         this.changeHandler = this.changeHandler.bind(this)
         this.clickHandler = this.clickHandler.bind(this)
         this.clickHandler2 = this.clickHandler2.bind(this)
-        this.clickHandler3 = this.clickHandler3.bind(this)
         this.changeQuery = this.changeQuery.bind(this)
         this.changeQuery2 = this.changeQuery2.bind(this)
-        this.changeQuery3 = this.changeQuery3.bind(this)
     }
   /*  
     componentDidMount(){
@@ -43,9 +40,6 @@ class SearchUsers extends React.Component{
         this.changeQuery2(this.state.query)
      }
 
-     clickHandler3(event){
-        this.changeQuery3(this.state.searchId)
-     }
     changeQuery = ((query) => {
         UsersAPI.get(query).then((users) => {
             if(!users || users.hasOwnProperty('error')) {
@@ -65,17 +59,9 @@ class SearchUsers extends React.Component{
             }
         });
     });
-    changeQuery3 = ((searchId) => {
-        UsersAPI.get(searchId).then((user) => {
-            if(!user || user.hasOwnProperty('error')) {
-                this.setState({gUser:""});
-            } else {
-                this.setState({gUser: user});
-            }
-        });
-    });
+
     render(){
-        const { query, gUser, allUsers, searchUsers } = this.state
+        const { query, allUsers, searchUsers } = this.state
 
         return(
             <div>

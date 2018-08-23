@@ -32,10 +32,10 @@ export const insert = (shelf) =>
     body: JSON.stringify(shelf)
   }).then(response => {
     if (response.status >= 200 && response.status < 300) {
-        return response;
         console.log(response);
         window.location.reload();
         alert("Successfull!!")
+        return response;
       } else {
        console.log('Somthing happened wrong');
       }

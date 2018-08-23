@@ -1,4 +1,5 @@
 import React from "react"
+import {Redirect} from "react-router-dom"
 import * as UsersAPI from './UsersAPI'
 
 class AddUser extends React.Component{
@@ -48,6 +49,7 @@ class AddUser extends React.Component{
                 password: this.state.password
             }
             UsersAPI.insert(user);
+            <Redirect to='/adduser'/>
         }
     }
 
