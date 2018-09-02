@@ -64,7 +64,7 @@ class SearchUsers extends React.Component{
         const { query, allUsers, searchUsers } = this.state
 
         return(
-            <div>
+            <div style={{position: 'relative', margin: 'auto'}}>
                 <input
                     name="query"
                     type="text"

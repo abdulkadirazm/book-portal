@@ -1,7 +1,9 @@
 import React from "react"
-import {Redirect} from "react-router-dom"
+//import {Redirect} from "react-router-dom"
 import * as UsersAPI from './UsersAPI'
-
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+ 
 class AddUser extends React.Component{
     constructor(props){
         super(props)
@@ -17,7 +19,7 @@ class AddUser extends React.Component{
         this.handleChange = this.handleChange.bind(this)
         //this.clickHandler = this.clickHandler.bind(this)
         //this.changeQuery = this.changeQuery.bind(this)
-    }   
+    }  
 
     /*
     clickHandler(event){
@@ -33,15 +35,15 @@ class AddUser extends React.Component{
     handleSave(){
 
         if(!this.state.userName){
-            alert("Please Enter an Username!")
+            NotificationManager.warning('Please enter username.', 'Empty place!', 3000);
         }else if(!this.state.eMail){
-            alert("Please enter your email!")
+            NotificationManager.warning('Please enter your email.', 'Empty place!', 3000);
         }else if(!this.state.password){
-            alert("Please enter your password!")
+            NotificationManager.warning('Please enter your password.', 'Empty place!', 3000);
         }else if(!this.state.passwordC){
-            alert("Please enter your password again!")
+            NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
         }else if(this.state.password !== this.state.passwordC){
-            alert("Paswords not match. Please check!")
+            NotificationManager.error('Paswords not match.', 'Please check!', 5000)
         }else {
             const user ={
                 username: this.state.userName,
@@ -49,9 +51,15 @@ class AddUser extends React.Component{
                 password: this.state.password
             }
             UsersAPI.insert(user);
-            <Redirect to='/adduser'/>
+            NotificationManager.success('User added successfully.', 'Success!', 5000);
+            this.afterSave();
         }
     }
+
+    afterSave(){
+        this.setState({userName: '', eMail: '', password: '', passwordC: ''})
+    }
+
 
     /*
     changeQuery = ((query) => {
@@ -67,13 +75,15 @@ class AddUser extends React.Component{
 
     render(){
         return (
-            <div>
-                <input type="text" placeholder="Enter an Username" className="userName" value={this.state.name} onChange={this.handleChange}             /><br/>
-                <input type="text" placeholder="Enter your email" className="eMail" value={this.state.name} onChange={this.handleChange}                 /><br/>
-                <input type="password" placeholder="Enter your password" className="password" value={this.state.name} onChange={this.handleChange}       /><br/> 
-                <input type="password" placeholder="Enter the password again" className="passwordC" value={this.state.name} onChange={this.handleChange} /><br/>
+            <div style={{position: 'relative', margin: 'auto'}}>
+                <input type="text" placeholder="Enter an Username" className="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
+                <input type="text" placeholder="Enter your email" className="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
+                <input type="password" placeholder="Enter your password" className="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
+                <input type="password" placeholder="Enter the password again" className="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                 
-                <input type="button" value="Submit" onClick={this.handleSave}/>
+                <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
+                
+                <NotificationContainer/>
             </div>
         )
     }

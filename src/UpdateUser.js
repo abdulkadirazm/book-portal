@@ -1,4 +1,5 @@
 import React from "react"
+import * as UsersAPI from './UsersAPI'
 
 class UpdateUser extends React.Component{
     constructor(props){
@@ -6,6 +7,7 @@ class UpdateUser extends React.Component{
         this.state = {
             allUsers: []
         }
+        this.clickHandler = this.clickHandler.bind(this)
     }
 
     componentDidMount(){
@@ -16,6 +18,10 @@ class UpdateUser extends React.Component{
                 this.setState({allUsers:users})
             }
         })
+    }
+
+    clickHandler(){
+        
     }
 
     render(){

@@ -1,4 +1,4 @@
-const api = "http://localhost:8080"
+const api = "http://192.168.1.104:8081"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
@@ -33,8 +33,6 @@ export const insert = (shelf) =>
   }).then(response => {
     if (response.status >= 200 && response.status < 300) {
         console.log(response);
-        window.location.reload();
-        alert("Successfull!!")
         return response;
       } else {
        console.log('Somthing happened wrong');
