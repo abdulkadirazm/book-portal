@@ -52,6 +52,7 @@ class DeleteUser extends React.Component{
             <div style={{position: 'relative', margin: 'auto'}}>
                 <div>
                 <table border="1">
+                     <tbody>
                         <tr>
                             <th></th>
                             <th>Username</th>
@@ -59,13 +60,14 @@ class DeleteUser extends React.Component{
                         </tr>
                       {allUsers.map((user, index) => {
                           return(
-                            <tr>
+                            <tr key={user.userID}>
                                 <td><button id={user.userID} onClick={this.clickHandler.bind(this, index)} >X</button></td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                             </tr>
                           )
                       })}
+                      </tbody>
                     </table>
                 </div>
             </div>

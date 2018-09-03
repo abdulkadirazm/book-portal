@@ -74,18 +74,20 @@ class SearchUsers extends React.Component{
                 <button onClick={this.clickHandler}>Search</button>
                 <div>
                     <table border="1">
-                        <tr>
-                            <th></th>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                      {searchUsers.map((user) => (
-                        <tr>
-                          <td>{user.userID}</td>
-                          <td>{user.username}</td>
-                          <td>{user.email}</td>
-                        </tr>
-                      ))}
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        {searchUsers.map((user) => (
+                            <tr key={user.userID}>
+                                <td>{user.userID}</td>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                            </tr>
+                        ))}
+                        </tbody>
                     </table>
                 </div>
                 <div>
@@ -93,18 +95,20 @@ class SearchUsers extends React.Component{
                 <button onClick={this.clickHandler2}>get All Users</button>
                 <div>
                     <table border="1">
-                        <tr>
-                            <th></th>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                      {allUsers.map((user) => (
-                        <tr>
-                          <td>{user.userID}</td>
-                          <td>{user.username}</td>
-                          <td>{user.email}</td>
-                        </tr>
-                      ))}
+                    <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        {allUsers.map((user) => (
+                            <tr key={user.userID}>
+                                <td>{user.userID}</td>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                            </tr>
+                        ))}
+                        </tbody>
                     </table>
                 </div>
                 </div>

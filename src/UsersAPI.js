@@ -1,4 +1,4 @@
-const api = "http://192.168.1.104:8081"
+const api = "http://localhost:8080"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
@@ -13,14 +13,16 @@ const headers = {
   'Access-Control-Allow-Credentials':true
 }
 
-export const get = (userId) =>
-  fetch(`${api}/users/${userId}`, { headers })
+export const get = (username) =>
+  fetch(`${api}/users/${username}`, { headers })
     .then(res => res.json())
     
+export const getById = (userId) => 
+  fetch(`${api}/users/byId/${userId}`, { headers })
+    .then(res => res.json())
 
 export const getAll = () =>
   fetch(`${api}/users`,{headers}).then(res => res.json())
-   
 
 export const insert = (shelf) => 
   fetch(`${api}/users`, {
@@ -35,7 +37,7 @@ export const insert = (shelf) =>
         console.log(response);
         return response;
       } else {
-       console.log('Somthing happened wrong');
+       console.log('Something happened wrong');
       }
 }).catch(err => err);
 

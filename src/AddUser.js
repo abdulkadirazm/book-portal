@@ -50,9 +50,15 @@ class AddUser extends React.Component{
                 email: this.state.eMail,
                 password: this.state.password
             }
-            UsersAPI.insert(user);
-            NotificationManager.success('User added successfully.', 'Success!', 5000);
-            this.afterSave();
+            UsersAPI.insert(user).then((res) => {
+                if (res.status >= 200 && res.status < 300) {
+                    NotificationManager.success('User added successfully.', 'Success!', 5000);
+                    this.afterSave();
+                }else {
+                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
+                }
+            });
+            
         }
     }
 
