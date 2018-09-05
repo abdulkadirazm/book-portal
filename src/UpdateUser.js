@@ -60,13 +60,12 @@ class UsersBody extends React.Component{
             }
             UsersAPI.update(this.state.userID,user).then((res) => {
                 if (res.status >= 200 && res.status < 300) {
-                    NotificationManager.success('User updated successfully.', 'Success!', 5000);
-                    this.afterSave();
+                    this.props.onSubmit(user, this.state.index);
                 }else {
                     NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
                 }
             });
-            this.props.onSubmit(user, this.state.index);
+            
         }
     }  
 
