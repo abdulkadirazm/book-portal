@@ -1,4 +1,4 @@
-const api = "http://localhost:8080"
+const api = "http://localhost:8081"
 
 
 // Generate a unique token for storing your bookshelf data on the backend server.
@@ -41,15 +41,22 @@ export const insert = (shelf) =>
       }
 }).catch(err => err);
 
-export const update = (user, shelf) =>
-  fetch(`${api}/users/${user.id}`, {
+export const update = (userId, shelf) =>
+  fetch(`${api}/users/${userId}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
+    body: JSON.stringify(shelf)
+  }).then(response => {
+    if (response.status >= 200 && response.status < 300) {
+        console.log(response);
+        return response;
+      } else {
+       console.log('Something happened wrong');
+      }
+}).catch(err => err);
 
 export const deleteUser = (query) =>
   fetch(`${api}/users/${query}`, {
@@ -57,5 +64,5 @@ export const deleteUser = (query) =>
     headers: {
       ...headers,
       'Content-Type': 'application/json'
-    }
+    },
   })
