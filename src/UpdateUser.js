@@ -162,6 +162,8 @@ class UpdateUser extends React.Component{
                 <br/>
                 { this.state.showBody ? <UsersBody key={userID} username={userName} email={eMail} password={passwordOld} userID={userID} 
                 index={this.state.selectedIndex} onSubmit={this.handleSubmit}/> : null }
+
+                <NotificationContainer />
             </div>
         )
     }
