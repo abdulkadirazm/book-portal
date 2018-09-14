@@ -24,7 +24,7 @@ class UsersBody extends React.Component{
 
     handleChange(event){
         //kısa yol
-        this.setState({[event.target.className]: event.target.value})
+        this.setState({[event.target.name]: event.target.value})
     }
 
     componentDidMount(){
@@ -72,11 +72,16 @@ class UsersBody extends React.Component{
     render(){
         return(
             <div style={{ position: 'relative', margin: 'auto' }}>
-                <input type="text" placeholder="Enter an Username" className="userName" value={this.state.userName} onChange={this.handleChange} /><br />
-                <input type="text" placeholder="Enter your email" className="eMail" value={this.state.eMail} onChange={this.handleChange} /><br />
-                <input type="password" placeholder="Enter your last password" className="passwordOldI" value={this.state.passwordOldI} onChange={this.handleChange} /><br />
-                <input type="password" placeholder="Enter your new password" className="password" value={this.state.password} onChange={this.handleChange} /><br />
-                <input type="password" placeholder="Enter the new password again" className="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br />
+            <label>Username</label>
+                <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange} /><br />
+            <label>Email</label>                
+                <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange} /><br />
+            <label>Last Password</label>                
+                <input type="password" placeholder="Enter your last password" className="form-control" name="passwordOldI" value={this.state.passwordOldI} onChange={this.handleChange} /><br />
+            <label>New Password</label>
+                <input type="password" placeholder="Enter your new password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} /><br />
+            <label>New Password again</label>                
+                <input type="password" placeholder="Enter the new password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br />
 
                 <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
 
@@ -140,7 +145,7 @@ class UpdateUser extends React.Component{
 
         return(
             <div>
-                <table border="1">
+                <table class="table table-striped table-hover table-bordered">
                     <tbody>
                         <tr>
                             <th></th>
@@ -150,7 +155,7 @@ class UpdateUser extends React.Component{
                       {allUsers.map((user, index) => {
                           return(
                             <tr key={user.userID}>
-                                <td><button onClick={this.clickHandler.bind(this,index)} >Edit</button></td>
+                                <td><button className="btn btn-info" onClick={this.clickHandler.bind(this,index)} >Edit</button></td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                             </tr>

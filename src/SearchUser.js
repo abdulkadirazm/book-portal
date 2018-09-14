@@ -1,6 +1,6 @@
 import React from "react"
 import * as UsersAPI from './UsersAPI'
-
+import BootstrapTable from 'react-bootstrap-table-next';
 
 class SearchUsers extends React.Component{
     constructor(props){
@@ -10,6 +10,19 @@ class SearchUsers extends React.Component{
             searchUsers:[],
             query:'',
             searchId:1,
+            columns: [{
+                dataField: 'userID',
+                text: 'ID'
+              },
+              {
+                dataField: 'username',
+                text: 'Username'
+              }, {
+                dataField: 'email',
+                text: 'Email'
+              }],
+              listType1: false,
+              listType2: false,
         }
         this.changeHandler = this.changeHandler.bind(this)
         this.clickHandler = this.clickHandler.bind(this)
@@ -18,7 +31,7 @@ class SearchUsers extends React.Component{
         this.changeQuery2 = this.changeQuery2.bind(this)
     }
   /*  
-    componentDidMount(){
+    componentDidMount(){    
         UsersAPI.getAll().then((users)=>{
             if(!users){
                 this.setState({users:[""]})
@@ -35,9 +48,11 @@ class SearchUsers extends React.Component{
 
     clickHandler(event){
        this.changeQuery(this.state.query)
+       this.setState({listType1: true, listType2: false})
     }
     clickHandler2(event){
         this.changeQuery2(this.state.query)
+        this.setState({listType1: false, listType2: true})
      }
 
     changeQuery = ((query) => {
@@ -71,47 +86,31 @@ class SearchUsers extends React.Component{
                     onChange={this.changeHandler}
                     placeholder="Search user"
                     value={query}/>
-                <button onClick={this.clickHandler}>Search</button>
-                <div>
-                    <table border="1">
-                        <tbody>
-                            <tr>
-                                <th></th>
-                                <th>Username</th>
-                                <th>Email</th>
-                            </tr>
-                        {searchUsers.map((user) => (
-                            <tr key={user.userID}>
-                                <td>{user.userID}</td>
-                                <td>{user.username}</td>
-                                <td>{user.email}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-
-                <button onClick={this.clickHandler2}>get All Users</button>
-                <div>
-                    <table border="1">
-                    <tbody>
-                            <tr>
-                                <th></th>
-                                <th>Username</th>
-                                <th>Email</th>
-                            </tr>
-                        {allUsers.map((user) => (
-                            <tr key={user.userID}>
-                                <td>{user.userID}</td>
-                                <td>{user.username}</td>
-                                <td>{user.email}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-                </div>
+                <button className="btn btn-info" onClick={this.clickHandler}>Search</button> <button className="btn btn-info" onClick={this.clickHandler2}>get All Users</button>
+                {
+                    this.state.listType1 
+                    ?
+                        <BootstrapTable 
+                            striped
+                            hover
+                            keyField='userID' 
+                            data={ searchUsers } 
+                            columns={ this.state.columns } /> 
+                    :
+                        null
+                }
+                {
+                    this.state.listType2
+                    ?
+                    <BootstrapTable 
+                            striped
+                            hover
+                            keyField='userID' 
+                            data={ allUsers } 
+                            columns={ this.state.columns } />
+                    :
+                        null
+                }
             </div>
         )
     }

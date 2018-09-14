@@ -45,13 +45,24 @@ class DeleteUser extends React.Component{
        
     }
 
+    buttonFunction(cell, row) {      
+        return <label>
+                  <button type="button" 
+                          id={row.id} 
+                          onClick={() => {this.clickHandler(row)}} 
+                          className="bbtn btn-primary btn-sm">
+                            Click Me
+                  </button>
+               </label>        
+    }
+
     render(){
         const { allUsers } = this.state
 
         return(
             <div style={{position: 'relative', margin: 'auto'}}>
                 <div>
-                <table border="1">
+                <table class="table table-striped table-hover table-bordered">
                      <tbody>
                         <tr>
                             <th></th>
@@ -61,7 +72,7 @@ class DeleteUser extends React.Component{
                       {allUsers.map((user, index) => {
                           return(
                             <tr key={user.userID}>
-                                <td><button id={user.userID} onClick={this.clickHandler.bind(this, index)} >X</button></td>
+                                <td><button className="btn btn-info" id={user.userID} onClick={this.clickHandler.bind(this, index)} >Delete</button></td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                             </tr>

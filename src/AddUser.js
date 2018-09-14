@@ -29,7 +29,7 @@ class AddUser extends React.Component{
 
     handleChange(event){
         //kısa yol
-        this.setState({[event.target.className]: event.target.value})
+        this.setState({[event.target.name]: event.target.value})
     }
 
     handleSave(){
@@ -82,10 +82,14 @@ class AddUser extends React.Component{
     render(){
         return (
             <div style={{position: 'relative', margin: 'auto'}}>
-                <input type="text" placeholder="Enter an Username" className="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
-                <input type="text" placeholder="Enter your email" className="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
-                <input type="password" placeholder="Enter your password" className="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
-                <input type="password" placeholder="Enter the password again" className="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
+            <label>Username</label>
+                <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
+            <label>Email</label>
+                <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
+            <label>Password</label>
+                <input type="password" placeholder="Enter your password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
+            <label>Password Again</label>    
+                <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                 
                 <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
                 
