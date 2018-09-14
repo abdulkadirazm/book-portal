@@ -124,16 +124,19 @@ class UpdateUser extends React.Component{
     }
 
     clickHandler(index, e){
-        let user = this.state.allUsers[index];
-        this.setState({
-            userID: user.userID,
-            userName: user.username,
-            eMail: user.email,
-            passwordOld: user.password,selectedIndex: index
-        })
-
-        this.setState({showBody: true})
-
+        if (this.state.selectedIndex !== index) {
+            let user = this.state.allUsers[index];
+            this.setState({
+                userID: user.userID,
+                userName: user.username,
+                eMail: user.email,
+                passwordOld: user.password,
+                selectedIndex: index
+            })
+            this.setState({showBody: true})    
+        } else {
+            this.setState({showBody: false, selectedIndex: null})
+        }
     }
 
     handleSubmit = (user, index) => {
