@@ -1,6 +1,10 @@
 import React from "react"
 import * as UsersAPI from './UsersAPI'
 import BootstrapTable from 'react-bootstrap-table-next';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import { Tabs, Tab } from 'material-ui-scrollable-tabs/Tabs'
+import {Link} from "react-router-dom"
 
 class SearchUsers extends React.Component{
     constructor(props){
@@ -80,37 +84,52 @@ class SearchUsers extends React.Component{
 
         return(
             <div style={{position: 'relative', margin: 'auto'}}>
-                <input
-                    name="query"
-                    type="text"
-                    onChange={this.changeHandler}
-                    placeholder="Search user"
-                    value={query}/>
-                <button className="btn btn-info" onClick={this.clickHandler}>Search</button> <button className="btn btn-info" onClick={this.clickHandler2}>get All Users</button>
-                {
-                    this.state.listType1 
-                    ?
-                        <BootstrapTable 
-                            striped
-                            hover
-                            keyField='userID' 
-                            data={ searchUsers } 
-                            columns={ this.state.columns } /> 
-                    :
-                        null
-                }
-                {
-                    this.state.listType2
-                    ?
-                    <BootstrapTable 
-                            striped
-                            hover
-                            keyField='userID' 
-                            data={ allUsers } 
-                            columns={ this.state.columns } />
-                    :
-                        null
-                }
+                <MuiThemeProvider>
+                    <div>
+                        <AppBar 
+                            title="Admin Page"
+                        />
+                        <Tabs onChange={this.changeTab} value={"/"}>
+                            <Tab value={0} label="User Add" containerElement={<Link to="/adduser"/>} />
+                            <Tab value={1} label="User Search" containerElement={<Link to="/searchuser"/>}/>
+                            <Tab value={2} label="User Delete" containerElement={<Link to="/deleteuser"/>} />
+                            <Tab value={3} label="User Update" containerElement={<Link to="/updateuser"/>} />                        
+                        </Tabs>
+                        
+                        <input
+                            name="query"
+                            type="text"
+                            onChange={this.changeHandler}
+                            placeholder="Search user"
+                            value={query}/>
+                        <button className="btn btn-info" onClick={this.clickHandler}>Search</button> <button className="btn btn-info" onClick={this.clickHandler2}>get All Users</button>
+                        {
+                           this.state.listType1 
+                            ?
+                                <BootstrapTable 
+                                    striped
+                                    hover
+                                    keyField='userID' 
+                                    data={ searchUsers } 
+                                    columns={ this.state.columns } /> 
+                            :
+                             null
+                        }
+                        {
+                            this.state.listType2
+                            ?
+                                <BootstrapTable 
+                                    striped
+                                    hover
+                                    keyField='userID' 
+                                    data={ allUsers } 
+                                    columns={ this.state.columns } />
+                            :
+                            null
+                        }
+                        
+                    </div>
+                </MuiThemeProvider>
             </div>
         )
     }

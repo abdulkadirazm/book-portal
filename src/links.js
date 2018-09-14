@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import { Tabs, Tab } from "material-ui";
+import { Tabs, Tab } from 'material-ui-scrollable-tabs/Tabs'
 
 class Links extends Component{
     render(){

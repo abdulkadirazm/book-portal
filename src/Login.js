@@ -43,14 +43,14 @@ constructor(props){
 
   UsersAPI.get(user.username).then((response) => {
       if(!response || response.hasOwnProperty('error')) {
-                this.setState({getUser:[""]});
+        this.setState({getUser:[""]});
+        NotificationManager.error('Username password do not match', 'Please check!', 5000)
     } else {
         this.setState({getUser: response});
-        NotificationManager.error('Username password do not match', 'Please check!', 5000)
     }
     for (let index = 0; index < this.state.getUser.length; index++) {
       const element = this.state.getUser[index];
-      if(element.password === user.password){
+      if(element.username === user.username && element.password === user.password){
         NotificationManager.success('Loged in successfully.', 'Success!', 5000, () => {
           ReactDOM.render(
             <BrowserRouter>

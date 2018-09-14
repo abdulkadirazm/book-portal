@@ -3,7 +3,11 @@ import React from "react"
 import * as UsersAPI from './UsersAPI'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
- 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import { Tabs, Tab } from 'material-ui-scrollable-tabs/Tabs'
+import {Link} from "react-router-dom"
+
 class AddUser extends React.Component{
     constructor(props){
         super(props)
@@ -82,18 +86,32 @@ class AddUser extends React.Component{
     render(){
         return (
             <div style={{position: 'relative', margin: 'auto'}}>
-            <label>Username</label>
-                <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
-            <label>Email</label>
-                <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
-            <label>Password</label>
-                <input type="password" placeholder="Enter your password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
-            <label>Password Again</label>    
-                <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
+            <MuiThemeProvider>
+                    <div>
+                        <AppBar 
+                            title="Admin Page"
+                        />
+                        <Tabs onChange={this.changeTab} value={"/"}>
+                            <Tab value={0} label="User Add" containerElement={<Link to="/adduser"/>} />
+                            <Tab value={1} label="User Search" containerElement={<Link to="/searchuser"/>}/>
+                            <Tab value={2} label="User Delete" containerElement={<Link to="/deleteuser"/>} />
+                            <Tab value={3} label="User Update" containerElement={<Link to="/updateuser"/>} />                        
+                        </Tabs>
+
+                        <label>Username</label>
+                            <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
+                        <label>Email</label>
+                            <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
+                        <label>Password</label>
+                            <input type="password" placeholder="Enter your password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
+                        <label>Password Again</label>    
+                            <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                 
-                <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
+                            <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
                 
-                <NotificationContainer/>
+                        <NotificationContainer/>
+                    </div>
+                </MuiThemeProvider>
             </div>
         )
     }
