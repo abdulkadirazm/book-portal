@@ -24,6 +24,7 @@ class UsersBody extends React.Component{
 
         this.handleSave = this.handleSave.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
 
     handleChange(event){
@@ -73,6 +74,10 @@ class UsersBody extends React.Component{
         }
     }  
 
+    handleClose(){
+        this.props.onClose();
+    }
+
     render(){
         return(
             <div style={{ position: 'relative', margin: 'auto' }}>
@@ -88,7 +93,7 @@ class UsersBody extends React.Component{
                 <input type="password" placeholder="Enter the new password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br />
 
                 <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
-
+                <button className="btn btn-warning" onClick={this.handleClose} >Close</button>
                 <NotificationContainer />
             </div>
         )
@@ -145,7 +150,11 @@ class UpdateUser extends React.Component{
         this.setState({allUsers:users, showBody: false});
         
         NotificationManager.success('User updated successfully.', 'Success!', 3000)
-      }
+    }
+
+    handleClose = () => {
+        this.setState({showBody: false, selectedIndex: null})
+    }
 
     render(){
         const { allUsers, userID, userName, eMail, passwordOld } = this.state
@@ -174,7 +183,9 @@ class UpdateUser extends React.Component{
                             {allUsers.map((user, index) => {
                                 return(
                                     <tr key={user.userID}>
-                                        <td><button className="btn btn-info" onClick={this.clickHandler.bind(this,index)} >Edit</button></td>
+                                        <td>
+                                            <button className="btn btn-info" onClick={this.clickHandler.bind(this,index)} >Edit</button>
+                                        </td>
                                         <td>{user.username}</td>
                                         <td>{user.email}</td>
                                     </tr>
@@ -184,7 +195,7 @@ class UpdateUser extends React.Component{
                         </table>
                         <br/>
                         { this.state.showBody ? <UsersBody key={userID} username={userName} email={eMail} password={passwordOld} userID={userID} 
-                        index={this.state.selectedIndex} onSubmit={this.handleSubmit}/> : null }
+                        index={this.state.selectedIndex} onSubmit={this.handleSubmit} onClose={this.handleClose}/> : null }
                         <NotificationContainer />
 
                     </div>
