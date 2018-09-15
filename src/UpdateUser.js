@@ -11,6 +11,11 @@ class UsersBody extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            user: {
+                username: '',
+                email: '',
+                password: ''
+            },
             userID: this.props.userID,
             userName: this.props.username,
             eMail: this.props.email,
@@ -31,7 +36,7 @@ class UsersBody extends React.Component{
         //kısa yol
         this.setState({[event.target.name]: event.target.value})
     }
-
+/*
     componentDidMount(){
         this.setState({
             userID: this.props.userID,
@@ -40,7 +45,7 @@ class UsersBody extends React.Component{
             passwordOld: this.props.password
         })
     }
-
+*/
     handleSave(){
 
         if (!this.state.userName) {
@@ -65,7 +70,13 @@ class UsersBody extends React.Component{
             }
             UsersAPI.update(this.state.userID,user).then((res) => {
                 if (res.status >= 200 && res.status < 300) {
-                    this.props.onSubmit(user, this.state.index);
+                    const userWithID = {
+                        userID: this.state.userID,
+                        username: user.username,
+                        email: user.email,
+                        password: user.password
+                    }
+                    this.props.onSubmit(userWithID, this.state.index);
                 }else {
                     NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
                 }
@@ -136,9 +147,9 @@ class UpdateUser extends React.Component{
                 userName: user.username,
                 eMail: user.email,
                 passwordOld: user.password,
-                selectedIndex: index
+                selectedIndex: index,
+                showBody: true
             })
-            this.setState({showBody: true})    
         } else {
             this.setState({showBody: false, selectedIndex: null})
         }
@@ -148,7 +159,6 @@ class UpdateUser extends React.Component{
         const users = Object.assign([], this.state.allUsers);
         users.splice(index, 1, user);
         this.setState({allUsers:users, showBody: false, selectedIndex: null});
-        
         NotificationManager.success('User updated successfully.', 'Success!', 3000)
     }
 
