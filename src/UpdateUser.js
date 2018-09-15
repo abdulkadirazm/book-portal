@@ -147,7 +147,7 @@ class UpdateUser extends React.Component{
     handleSubmit = (user, index) => {
         const users = Object.assign([], this.state.allUsers);
         users.splice(index, 1, user);
-        this.setState({allUsers:users, showBody: false});
+        this.setState({allUsers:users, showBody: false, selectedIndex: null});
         
         NotificationManager.success('User updated successfully.', 'Success!', 3000)
     }
