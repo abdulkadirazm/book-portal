@@ -49,6 +49,8 @@ class AddUser extends React.Component{
             NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
         }else if(this.state.password !== this.state.passwordC){
             NotificationManager.error('Paswords not match.', 'Please check!', 3000)
+        }else if(this.state.roleName === 0) {
+            NotificationManager.warning('Please select a role type.', 'Empty place!', 3000);
         }else {
             const user ={
                 username: this.state.userName,
@@ -69,7 +71,7 @@ class AddUser extends React.Component{
     }
 
     afterSave(){
-        this.setState({userName: '', eMail: '', password: '', passwordC: ''})
+        this.setState({userName: '', eMail: '', password: '', passwordC: '', roleName: 0})
     }
 
 
@@ -110,6 +112,7 @@ class AddUser extends React.Component{
                             <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                         <label>User Role</label><br/>
                         <select name="roleName" value={this.state.roleName} onChange={this.handleChange}>
+                            <option value={0} disabled>Select</option>
                             <option value={1}>Admin</option>
                             <option value={2}>User</option>
                         </select><br/> <br/>
