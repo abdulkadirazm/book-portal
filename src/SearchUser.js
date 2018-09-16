@@ -89,7 +89,7 @@ class SearchUsers extends React.Component{
                         <AppBar 
                             title="Admin Page"
                         />
-                        <Tabs onChange={this.changeTab} value={"/"}>
+                        <Tabs onChange={this.changeTab} value={"/"} initialSelectedIndex={1}>
                             <Tab value={0} label="User Add" containerElement={<Link to="/adduser"/>} />
                             <Tab value={1} label="User Search" containerElement={<Link to="/searchuser"/>}/>
                             <Tab value={2} label="User Delete" containerElement={<Link to="/deleteuser"/>} />
