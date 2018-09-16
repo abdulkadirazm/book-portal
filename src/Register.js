@@ -44,7 +44,7 @@ class Register extends Component {
           email: this.state.eMail,
           password: this.state.password
       }
-      UsersAPI.insert(user).then((res) => {
+      UsersAPI.insert(user, 2).then((res) => {
           if (res.status >= 200 && res.status < 300) {
               NotificationManager.success('Click to redirect Login Page!', 'Success!', 5000, () => {
                 var loginscreen=[];

@@ -16,6 +16,7 @@ class AddUser extends React.Component{
             eMail:"",
             password:"",
             passwordC:"",
+            roleName: 0,
             query:[0]
         }
 
@@ -52,9 +53,10 @@ class AddUser extends React.Component{
             const user ={
                 username: this.state.userName,
                 email: this.state.eMail,
-                password: this.state.password
+                password: this.state.password,
+                roleID: this.state.roleName
             }
-            UsersAPI.insert(user).then((res) => {
+            UsersAPI.insert(user, user.roleID).then((res) => {
                 if (res.status >= 200 && res.status < 300) {
                     NotificationManager.success('User added successfully.', 'Success!', 5000);
                     this.afterSave();
@@ -106,7 +108,11 @@ class AddUser extends React.Component{
                             <input type="password" placeholder="Enter your password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
                         <label>Password Again</label>    
                             <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
-                
+                        <label>User Role</label><br/>
+                        <select name="roleName" value={this.state.roleID} onChange={this.handleChange}>
+                            <option value={1}>Admin</option>
+                            <option value={2}>User</option>
+                        </select><br/> <br/>
                             <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
                 
                         <NotificationContainer/>

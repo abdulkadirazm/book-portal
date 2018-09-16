@@ -16,16 +16,12 @@ const headers = {
 export const get = (username) =>
   fetch(`${api}/users/${username}`, { headers })
     .then(res => res.json())
-    
-export const getById = (userId) => 
-  fetch(`${api}/users/byId/${userId}`, { headers })
-    .then(res => res.json())
 
 export const getAll = () =>
   fetch(`${api}/users`,{headers}).then(res => res.json())
 
-export const insert = (shelf) => 
-  fetch(`${api}/users`, {
+export const insert = (shelf, roleId) => 
+  fetch(`${api}/users/${roleId}`, {
     method: 'POST',
     headers: {
       ...headers,
