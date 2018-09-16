@@ -6,7 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import { Tabs, Tab } from 'material-ui-scrollable-tabs/Tabs'
 import {Link} from "react-router-dom"
-
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class DeleteUser extends React.Component{
     constructor(props){
@@ -36,10 +37,16 @@ class DeleteUser extends React.Component{
             {
               label: 'Yes',
               onClick: () => {
-                const users = Object.assign([], this.state.allUsers);
-                users.splice(index, 1);
-                this.setState({allUsers:users});
-                UsersAPI.deleteUser(id);
+                UsersAPI.deleteUser(id).then((res) => {
+                if (res.status >= 200 && res.status < 300) {
+                    const users = Object.assign([], this.state.allUsers);
+                    users.splice(index, 1);
+                    this.setState({allUsers:users});
+                    NotificationManager.success('User deleted successfully.', 'Success!', 3000);
+                }else {
+                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
+                }
+            });
               }
             },
             {
@@ -48,17 +55,6 @@ class DeleteUser extends React.Component{
           ]
         })
        
-    }
-
-    buttonFunction(cell, row) {      
-        return <label>
-                  <button type="button" 
-                          id={row.id} 
-                          onClick={() => {this.clickHandler(row)}} 
-                          className="bbtn btn-primary btn-sm">
-                            Click Me
-                  </button>
-               </label>        
     }
 
     render(){
@@ -98,6 +94,7 @@ class DeleteUser extends React.Component{
                                 </tbody>
                             </table>
                         </div>
+                        <NotificationContainer/>
                     </div>
                 </MuiThemeProvider>
             </div>

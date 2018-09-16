@@ -44,7 +44,7 @@ constructor(props){
   UsersAPI.get(user.username).then((response) => {
       if(!response || response.hasOwnProperty('error')) {
         this.setState({getUser:[""]});
-        NotificationManager.error('Username password do not match', 'Please check!', 5000)
+        NotificationManager.error('Username password do not match', 'Please check!', 3000)
     } else {
         this.setState({getUser: response});
     }
@@ -62,7 +62,7 @@ constructor(props){
         
       });
       }else{
-        NotificationManager.error('Username password do not match', 'Please check!', 5000)
+        NotificationManager.error('Username password do not match', 'Please check!', 3000)
       }  
     }
     

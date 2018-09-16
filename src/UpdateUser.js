@@ -59,7 +59,7 @@ class UsersBody extends React.Component{
           } else if (!this.state.passwordC) {
             NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
           } else if (this.state.password !== this.state.passwordC) {
-            NotificationManager.error('Paswords not match.', 'Please check!', 5000)
+            NotificationManager.error('Paswords not match.', 'Please check!', 3000)
           } else if (this.state.passwordOldI !== this.state.passwordOld) {
             NotificationManager.error('Old paswords is incorrect.', 'Please check!', 5000)
           } else {
@@ -78,7 +78,7 @@ class UsersBody extends React.Component{
                     }
                     this.props.onSubmit(userWithID, this.state.index);
                 }else {
-                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
+                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
                 }
             });
             

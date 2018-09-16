@@ -48,7 +48,7 @@ class AddUser extends React.Component{
         }else if(!this.state.passwordC){
             NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
         }else if(this.state.password !== this.state.passwordC){
-            NotificationManager.error('Paswords not match.', 'Please check!', 5000)
+            NotificationManager.error('Paswords not match.', 'Please check!', 3000)
         }else {
             const user ={
                 username: this.state.userName,
@@ -58,10 +58,10 @@ class AddUser extends React.Component{
             }
             UsersAPI.insert(user, user.roleID).then((res) => {
                 if (res.status >= 200 && res.status < 300) {
-                    NotificationManager.success('User added successfully.', 'Success!', 5000);
+                    NotificationManager.success('User added successfully.', 'Success!', 3000);
                     this.afterSave();
                 }else {
-                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
+                    NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
                 }
             });
             
@@ -109,7 +109,7 @@ class AddUser extends React.Component{
                         <label>Password Again</label>    
                             <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                         <label>User Role</label><br/>
-                        <select name="roleName" value={this.state.roleID} onChange={this.handleChange}>
+                        <select name="roleName" value={this.state.roleName} onChange={this.handleChange}>
                             <option value={1}>Admin</option>
                             <option value={2}>User</option>
                         </select><br/> <br/>

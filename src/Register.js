@@ -37,7 +37,7 @@ class Register extends Component {
   }else if(!this.state.passwordC){
       NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
   }else if(this.state.password !== this.state.passwordC){
-      NotificationManager.error('Paswords not match.', 'Please check!', 5000)
+      NotificationManager.error('Paswords not match.', 'Please check!', 3000)
   }else {
       const user ={
           username: this.state.userName,
@@ -60,7 +60,7 @@ class Register extends Component {
               
               
           }else {
-              NotificationManager.error('Service don\'t answer.','Something Wrong!', 5000)
+              NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
           }
       });
       

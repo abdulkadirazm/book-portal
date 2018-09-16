@@ -61,4 +61,11 @@ export const deleteUser = (query) =>
       ...headers,
       'Content-Type': 'application/json'
     },
-  })
+  }).then(response => {
+    if (response.status >= 200 && response.status < 300) {
+        console.log(response);
+        return response;
+      } else {
+       console.log('Something happened wrong');
+      }
+}).catch(err => err);
