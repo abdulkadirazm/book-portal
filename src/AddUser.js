@@ -111,7 +111,7 @@ class AddUser extends React.Component{
                         <label>Password Again</label>    
                             <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
                         <label>User Role</label><br/>
-                        <select name="roleName" value={this.state.roleName} onChange={this.handleChange}>
+                        <select name="roleName" value={this.state.roleName} onChange={this.handleChange} className="custom-select">
                             <option value={0} disabled>Select</option>
                             <option value={1}>Admin</option>
                             <option value={2}>User</option>
