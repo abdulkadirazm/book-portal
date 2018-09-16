@@ -56,9 +56,6 @@ class Register extends Component {
                   isLogin:true
                 });
               });
-              
-              
-              
           }else {
               NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
           }
