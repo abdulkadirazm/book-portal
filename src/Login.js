@@ -51,16 +51,13 @@ constructor(props){
     for (let index = 0; index < this.state.getUser.length; index++) {
       const element = this.state.getUser[index];
       if(element.username === user.username && element.password === user.password){
-        NotificationManager.success('Loged in successfully.', 'Success!', 5000, () => {
-          ReactDOM.render(
+        ReactDOM.render(
             <BrowserRouter>
                 <AppRouter />
             </BrowserRouter>,
             document.getElementById('root')
         );        
         registerServiceWorker()
-        
-      });
       }else{
         NotificationManager.error('Username password do not match', 'Please check!', 3000)
       }  
