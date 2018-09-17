@@ -75,7 +75,7 @@ class DeleteUser extends React.Component{
                         </Tabs>
                         
                         <div>
-                            <table class="table table-striped table-hover table-bordered">
+                            <table className="table table-striped table-hover table-bordered">
                                 <tbody>
                                     <tr>
                                         <th></th>

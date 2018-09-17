@@ -235,7 +235,7 @@ class UpdateUser extends React.Component{
                             <Tab value={3} label="User Update" containerElement={<Link to="/updateuser"/>} />                        
                         </Tabs>
                         
-                        <table class="table table-striped table-hover table-bordered">
+                        <table className="table table-striped table-hover table-bordered">
                             <tbody>
                                 <tr>
                                     <th></th>
