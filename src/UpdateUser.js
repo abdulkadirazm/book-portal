@@ -150,6 +150,7 @@ class UpdateUser extends React.Component{
                 selectedIndex: index,
                 showBody: true
             })
+            this.refs.inputRef.scrollIntoView();
         } else {
             this.setState({showBody: false, selectedIndex: null})
         }
@@ -204,8 +205,12 @@ class UpdateUser extends React.Component{
                             </tbody>
                         </table>
                         <br/>
-                        { this.state.showBody ? <UsersBody key={userID} username={userName} email={eMail} password={passwordOld} userID={userID} 
+                        
+                        <div ref="inputRef">
+                            { this.state.showBody ? <UsersBody key={userID} username={userName} email={eMail} password={passwordOld} userID={userID} 
                         index={this.state.selectedIndex} onSubmit={this.handleSubmit} onClose={this.handleClose}/> : null }
+                        </div>
+
                         <NotificationContainer />
 
                     </div>
