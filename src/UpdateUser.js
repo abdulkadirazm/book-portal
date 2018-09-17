@@ -46,6 +46,13 @@ class UsersBody extends React.Component{
         })
     }
 */
+
+    onKeyPress = (e) => {
+        if (e.which === 13) {
+            this.handleSave(e);
+        }
+    }
+
     handleSave(){
 
         if (!this.state.userName) {
@@ -93,15 +100,55 @@ class UsersBody extends React.Component{
         return(
             <div style={{ position: 'relative', margin: 'auto' }}>
             <label>Username</label>
-                <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange} /><br />
+                <input type="text" 
+                       placeholder="Enter an Username" 
+                       className="form-control" 
+                       name="userName" 
+                       value={this.state.userName} 
+                       onChange={this.handleChange}
+                       onKeyPress={this.onKeyPress}
+                       />
+                <br />
             <label>Email</label>                
-                <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange} /><br />
+                <input type="text" 
+                       placeholder="Enter your email" 
+                       className="form-control" 
+                       name="eMail" 
+                       value={this.state.eMail} 
+                       onChange={this.handleChange}
+                       onKeyPress={this.onKeyPress}
+                       />
+                <br />
             <label>Last Password</label>                
-                <input type="password" placeholder="Enter your last password" className="form-control" name="passwordOldI" value={this.state.passwordOldI} onChange={this.handleChange} /><br />
+                <input type="password" 
+                       placeholder="Enter your last password"
+                       className="form-control" 
+                       name="passwordOldI" 
+                       value={this.state.passwordOldI} 
+                       onChange={this.handleChange}
+                       onKeyPress={this.onKeyPress}
+                       />
+                <br />
             <label>New Password</label>
-                <input type="password" placeholder="Enter your new password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} /><br />
+                <input type="password" 
+                       placeholder="Enter your new password" 
+                       className="form-control" 
+                       name="password" 
+                       value={this.state.password} 
+                       onChange={this.handleChange}
+                       onKeyPress={this.onKeyPress}
+                       />
+                <br />
             <label>New Password again</label>                
-                <input type="password" placeholder="Enter the new password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br />
+                <input type="password" 
+                       placeholder="Enter the new password again" 
+                       className="form-control" 
+                       name="passwordC" 
+                       value={this.state.passwordC} 
+                       onChange={this.handleChange}
+                       onKeyPress={this.onKeyPress}
+                       />
+                <br />
 
                 <button className='btn btn-info' type="button" value="Submit" onClick={this.handleSave}>Submit</button>
                 <button className="btn btn-warning" onClick={this.handleClose} >Close</button>
@@ -122,9 +169,10 @@ class UpdateUser extends React.Component{
             eMail: '',
             passwordOld: '',
             showBody: false,
-            selectedIndex: 0
+            selectedIndex: null
         }
         this.clickHandler = this.clickHandler.bind(this)
+        this.inputRef= React.createRef()
     }
 
     
@@ -150,7 +198,10 @@ class UpdateUser extends React.Component{
                 selectedIndex: index,
                 showBody: true
             })
-            this.refs.inputRef.scrollIntoView();
+            setTimeout(
+                function() {
+                    this.refs.inputRef.scrollIntoView();
+                }.bind(this), 100);
         } else {
             this.setState({showBody: false, selectedIndex: null})
         }
@@ -205,12 +256,10 @@ class UpdateUser extends React.Component{
                             </tbody>
                         </table>
                         <br/>
-                        
                         <div ref="inputRef">
                             { this.state.showBody ? <UsersBody key={userID} username={userName} email={eMail} password={passwordOld} userID={userID} 
                         index={this.state.selectedIndex} onSubmit={this.handleSubmit} onClose={this.handleClose}/> : null }
                         </div>
-
                         <NotificationContainer />
 
                     </div>
