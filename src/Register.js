@@ -26,19 +26,25 @@ class Register extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  onKeyPress = (e) => {
+    if (e.which === 13) {
+      this.handleClick(e);
+    }
+  }
+
   handleClick(event){
     var self = this;
     if(!this.state.userName){
       NotificationManager.warning('Please enter username.', 'Empty place!', 3000);
-  }else if(!this.state.eMail){
+    }else if(!this.state.eMail){
       NotificationManager.warning('Please enter your email.', 'Empty place!', 3000);
-  }else if(!this.state.password){
+    }else if(!this.state.password){
       NotificationManager.warning('Please enter your password.', 'Empty place!', 3000);
-  }else if(!this.state.passwordC){
+    }else if(!this.state.passwordC){
       NotificationManager.warning('Please enter your password again.', 'Empty place!', 3000);
-  }else if(this.state.password !== this.state.passwordC){
+    }else if(this.state.password !== this.state.passwordC){
       NotificationManager.error('Paswords not match.', 'Please check!', 3000)
-  }else {
+    }else {
       const user ={
           username: this.state.userName,
           email: this.state.eMail,
@@ -60,10 +66,7 @@ class Register extends Component {
               NotificationManager.error('Service don\'t answer.','Something Wrong!', 3000)
           }
       });
-      
-  }
-
-
+    }
   }
 
   render() {
@@ -80,6 +83,7 @@ class Register extends Component {
              name="userName"
              value={this.state.userName}
              onChange = {this.handleChange}
+             onKeyPress={this.onKeyPress}
              />
            <br/>
            <TextField
@@ -88,6 +92,7 @@ class Register extends Component {
              name="eMail"
              value={this.state.eMail}
              onChange = {this.handleChange}
+             onKeyPress={this.onKeyPress}
              />
            <br/>
            <TextField
@@ -97,6 +102,7 @@ class Register extends Component {
              name="password"
              value={this.state.password}
              onChange = {this.handleChange}
+             onKeyPress={this.onKeyPress}
              />
            <br/>
            <TextField
@@ -106,6 +112,7 @@ class Register extends Component {
              name="passwordC"
              value={this.state.passwordC}
              onChange = {this.handleChange}
+             onKeyPress={this.onKeyPress}
              />
            <br/>
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>

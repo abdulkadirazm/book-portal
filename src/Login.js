@@ -22,14 +22,20 @@ constructor(props){
   }
 
   this.handleChange = this.handleChange.bind(this)
- }
+}
 
- handleChange(event){
+handleChange(event){
   //kısa yol
   this.setState({[event.target.name]: event.target.value})
 }
 
- handleClick(event){
+onKeyPress = (e) => {
+  if (e.which === 13) {
+    this.handleClick(e);
+  }
+}
+
+handleClick(event){
   const user = {
     username: this.state.userName,
     password: this.state.password
@@ -37,39 +43,37 @@ constructor(props){
 
   if(!this.state.userName){
     NotificationManager.warning('Please enter username.', 'Empty place!', 3000);
-}else if(!this.state.password){
+  }else if(!this.state.password){
     NotificationManager.warning('Please enter your password.', 'Empty place!', 3000);
-}else{
+  }else{
 
-  UsersAPI.get(user.username).then((response) => {
+    UsersAPI.get(user.username).then((response) => {
       if(!response || response.hasOwnProperty('error')) {
         this.setState({getUser:[""]});
         NotificationManager.error('Username password do not match', 'Please check!', 3000)
-    } else {
+      } else {
         this.setState({getUser: response});
-    }
-    if (this.state.getUser.length !== 0) {
-      for (let index = 0; index < this.state.getUser.length; index++) {
-        const element = this.state.getUser[index];
-        if(element.username === user.username && element.password === user.password){
-          ReactDOM.render(
+      }
+      if (this.state.getUser.length !== 0) {
+        for (let index = 0; index < this.state.getUser.length; index++) {
+          const element = this.state.getUser[index];
+          if(element.username === user.username && element.password === user.password){
+            ReactDOM.render(
               <BrowserRouter>
                   <AppRouter />
               </BrowserRouter>,
               document.getElementById('root')
-          );        
-          registerServiceWorker()
-        }else{
-          NotificationManager.error('Username password do not match', 'Please check!', 3000)
-        }  
+            );        
+            registerServiceWorker()
+          }else{
+            NotificationManager.error('Username password do not match', 'Please check!', 3000)
+          }  
+        }
+      }else {
+        NotificationManager.error('Not Registered yet.Go to registration', 'Username not found!', 3000)
       }
-    }else {
-      NotificationManager.error('Not Registered yet.Go to registration', 'Username not found!', 3000)
-    }
-    
-    
-    
-});}
+    });
+  }
 }
 
 render() {
@@ -86,6 +90,7 @@ render() {
              name="userName"
              value={this.state.userName}
              onChange = {this.handleChange}
+             onKeyPress={this.onKeyPress}
              />
            <br/>
              <TextField
@@ -95,6 +100,7 @@ render() {
                name="password"
                value={this.state.password}
                onChange = {this.handleChange}
+               onKeyPress={this.onKeyPress}
                />
              <br/>
              <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>

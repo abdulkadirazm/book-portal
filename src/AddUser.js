@@ -37,6 +37,12 @@ class AddUser extends React.Component{
         this.setState({[event.target.name]: event.target.value})
     }
 
+    onKeyPress = (e) => {
+        if (e.which === 13) {
+            this.handleSave(e);
+        }
+    }
+
     handleSave(){
 
         if(!this.state.userName){
@@ -103,15 +109,47 @@ class AddUser extends React.Component{
                         </Tabs>
 
                         <label>Username</label>
-                            <input type="text" placeholder="Enter an Username" className="form-control" name="userName" value={this.state.userName} onChange={this.handleChange}             /><br/>
+                            <input type="text" 
+                                   placeholder="Enter an Username" 
+                                   className="form-control" 
+                                   name="userName" 
+                                   value={this.state.userName} 
+                                   onChange={this.handleChange}
+                                   onKeyPress={this.onKeyPress}
+                                   />
+                            <br/>
                         <label>Email</label>
-                            <input type="text" placeholder="Enter your email" className="form-control" name="eMail" value={this.state.eMail} onChange={this.handleChange}                 /><br/>
+                            <input type="text" 
+                                   placeholder="Enter your email" 
+                                   className="form-control" 
+                                   name="eMail" 
+                                   value={this.state.eMail} 
+                                   onChange={this.handleChange}
+                                   onKeyPress={this.onKeyPress}
+                                   />
+                            <br/>
                         <label>Password</label>
-                            <input type="password" placeholder="Enter your password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}       /><br/> 
+                            <input type="password" 
+                                   placeholder="Enter your password" 
+                                   className="form-control" 
+                                   name="password" 
+                                   value={this.state.password} 
+                                   onChange={this.handleChange}
+                                   onKeyPress={this.onKeyPress}
+                                   />
+                            <br/> 
                         <label>Password Again</label>    
-                            <input type="password" placeholder="Enter the password again" className="form-control" name="passwordC" value={this.state.passwordC} onChange={this.handleChange} /><br/>
+                            <input type="password" 
+                                   placeholder="Enter the password again" 
+                                   className="form-control" 
+                                   name="passwordC" 
+                                   value={this.state.passwordC} 
+                                   onChange={this.handleChange}
+                                   onKeyPress={this.onKeyPress}
+                                   />
+                             <br/>
                         <label>User Role</label><br/>
-                        <select name="roleName" value={this.state.roleName} onChange={this.handleChange} className="custom-select">
+                        <select name="roleName" value={this.state.roleName} onChange={this.handleChange} className="custom-select" onKeyPress={this.onKeyPress}>
                             <option value={0} disabled>Select</option>
                             <option value={1}>Admin</option>
                             <option value={2}>User</option>
