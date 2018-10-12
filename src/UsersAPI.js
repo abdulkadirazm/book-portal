@@ -20,8 +20,8 @@ export const get = (username) =>
 export const getAll = () =>
   fetch(`${api}/users`,{headers}).then(res => res.json())
 
-export const insert = (shelf, roleId) => 
-  fetch(`${api}/users/${roleId}`, {
+export const insert = (shelf) => 
+  fetch(`${api}/users`, {
     method: 'POST',
     headers: {
       ...headers,

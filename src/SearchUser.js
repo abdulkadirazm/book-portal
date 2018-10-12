@@ -102,7 +102,7 @@ class SearchUsers extends React.Component{
                             onChange={this.changeHandler}
                             placeholder="Search user"
                             value={query}/>
-                        <button className="btn btn-info" onClick={this.clickHandler}>Search</button> <button className="btn btn-info" onClick={this.clickHandler2}>get All Users</button>
+                        <button className="btn btn-info" onClick={this.clickHandler}>Search</button> <button className="btn btn-info" onClick={this.clickHandler2}>Get All Users</button>
                         {
                            this.state.listType1 
                             ?

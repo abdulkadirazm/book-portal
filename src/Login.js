@@ -57,10 +57,12 @@ handleClick(event){
       if (this.state.getUser.length !== 0) {
         for (let index = 0; index < this.state.getUser.length; index++) {
           const element = this.state.getUser[index];
-          if(element.username === user.username && element.password === user.password){
+          if(element.username !== user.username){
+            NotificationManager.error('Not Registered yet.Go to registration', 'Username not found!', 3000)
+          }else if(element.password === user.password) {
             ReactDOM.render(
               <BrowserRouter>
-                  <AppRouter />
+                <AppRouter />
               </BrowserRouter>,
               document.getElementById('root')
             );        
